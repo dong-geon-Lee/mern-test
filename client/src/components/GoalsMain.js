@@ -3,7 +3,7 @@ import GoalsItem from "./GoalsItem";
 import { useSelector, useDispatch } from "react-redux";
 import { getGoals } from "../features/goalSlice";
 import GoalsForm from "./GoalsForm";
-import Spinner from "./Spinner";
+// import Spinner from "./Spinner";
 
 const GoalsMain = () => {
   const { goals } = useSelector((state) => state.goal);

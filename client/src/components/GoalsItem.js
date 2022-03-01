@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteGoal, getGoals, updateGoal } from "../features/goalSlice";
+import { deleteGoal, updateGoal } from "../features/goalSlice";
 
 const GoalsItem = ({ id, text, date }) => {
   const [newText, setNewText] = useState("");

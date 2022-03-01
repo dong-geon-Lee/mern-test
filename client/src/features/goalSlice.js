@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = "/api/goals";
+const API_URL = "http://localhost:5000/api/goals";
 
 const initialState = {
   goals: [],
@@ -67,7 +67,7 @@ const goalSlice = createSlice({
   name: "goals",
   initialState,
   reducers: {
-    reset: (state) => initialState,
+    reset: (state) => state,
   },
   extraReducers: (builder) => {
     builder
@@ -112,9 +112,9 @@ const goalSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
-      // .addCase(updateGoal.pending, (state) => {
-      //   state.isLoading = true;
-      // })
+      .addCase(updateGoal.pending, (state) => {
+        state.isLoading = true;
+      })
       .addCase(updateGoal.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
@@ -123,12 +123,12 @@ const goalSlice = createSlice({
             goal.text = action.payload.text;
           }
         });
+      })
+      .addCase(updateGoal.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
       });
-    // .addCase(updateGoal.rejected, (state, action) => {
-    //   state.isLoading = false;
-    //   state.isError = true;
-    //   state.message = action.payload;
-    // });
   },
 });
 
